@@ -1,0 +1,19 @@
+# WM INDEPENDENT KEYBINDINGS
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# APPLICATION KEYBINDINGS
+
+super + space
+    dmenu_run -x 10 -y 8 -z 2540 -h 25
+
+super + Return
+    alacritty
+
+super + B
+    brave
+
+super + S
+    alacritty --title "Spotify" -e spt
