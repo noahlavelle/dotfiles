@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+# colors
+
+black=#222526
+green=#89b482
+white=#c7b89d
+grey=#2b2e2f
+blue=#6f8faf
+red=#ec6b64
+darkblue=#6080a0
+purple=#b16286
+orange=#d79921
+yellow=#d6b676
+pink=#cc7f94
