@@ -17,3 +17,14 @@ super + B
 
 super + S
     alacritty --title "Spotify" -e spt
+
+# SCREENSHOT BINDINGS
+
+super + s
+    import png:- | xclip -selection clipboard -t image/png
+
+super + Print
+    import -window root png:- | xclip -selection clipboard -t image/png
+
+super + shift + Print
+    import -window root ~/Pictures/$(date '+%Y%m%d-%H%M%S').png
