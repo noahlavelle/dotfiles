@@ -1,0 +1,188 @@
+{
+    "new script": {
+        "body": [
+            "#!/usr/bin/env perl",
+            "",
+            "use strict;",
+            "use warnings;",
+            "",
+            "use Common qw(verbose \\$VERBOSE);",
+            "",
+            "${1:verbose 'Hello World'};",
+            "$2"
+        ],
+        "prefix": "#!",
+        "description": "new perl script"
+    },
+    "if statement": {
+        "body": [
+            "if (${1:condition}) {",
+            "\t$2",
+            "}"
+        ],
+        "prefix": "if",
+        "description": "if statement"
+    },
+    "elsif statement": {
+        "body": [
+            "elsif (${1:condition}) {",
+            "\t$2",
+            "}"
+        ],
+        "prefix": "elsif",
+        "description": "elsif statement"
+    },
+    "else clause": {
+        "body": [
+            "else {",
+            "\t$1",
+            "}"
+        ],
+        "prefix": "else",
+        "description": "else clause"
+    },
+    "if-else statement": {
+        "body": [
+            "if (${1:condition}) {",
+            "\t$2",
+            "}",
+            "else {",
+            "\t$3",
+            "}"
+        ],
+        "prefix": "ifelse",
+        "description": "if statement with else"
+    },
+    "unless statement": {
+        "body": [
+            "unless (${1:condition}) {",
+            "\t$2",
+            "}"
+        ],
+        "prefix": "unless",
+        "description": "unless statement"
+    },
+    "conditional one-line": {
+        "body": [
+            "${1:expression} if ${2:condition};"
+        ],
+        "prefix": "xif",
+        "description": "conditional one-line"
+    },
+    "unless conditional one-line": {
+        "body": [
+            "${1:expression} unless ${2:condition};"
+        ],
+        "prefix": "xunless",
+        "description": "unless conditional one-line"
+    },
+    "while": {
+        "body": [
+            "while (${1:condition}) {",
+            "\t$2",
+            "}"
+        ],
+        "prefix": "while",
+        "description": "while loop"
+    },
+    "until": {
+        "body": [
+            "until (${1:condition}) {",
+            "\t$2",
+            "}"
+        ],
+        "prefix": "until",
+        "description": "until loop"
+    },
+    "for": {
+        "body": [
+            "for (my ${1:\\$i = 0}; ${2:i < 10}; ${3:i++}) {",
+            "\t$4",
+            "}"
+        ],
+        "prefix": "for",
+        "description": "for a for loop"
+    },
+    "foreach": {
+        "body": [
+            "for $1(@${2:array}) {",
+            "\t$3",
+            "}"
+        ],
+        "prefix": "foreach",
+        "description": "foreach loop"
+    },
+    "one-line foreach": {
+        "body": [
+            "${1:expression} foreach $2(@${3:array});"
+        ],
+        "prefix": "xforeach",
+        "description": "one-line foreach"
+    },
+    "dowhile": {
+        "body": [
+            "do {",
+            "\t$1",
+            "} while ${2:condition};"
+        ],
+        "prefix": "dowhile",
+        "description": "do/while loop"
+    },
+    "dountil": {
+        "body": [
+            "do {",
+            "\t$1",
+            "} until ${2:condition};"
+        ],
+        "prefix": "dountil",
+        "description": "do/until loop"
+    },
+    "sub": {
+        "body": [
+            "sub ${1:subroutine_name} {",
+            "\t$2",
+            "}"
+        ],
+        "prefix": "sub",
+        "description": "subroutine definition"
+    },
+    "try": {
+        "body": [
+            "try {",
+            "\t$1",
+            "} catch {",
+            "\t$2{print \"An error occured - \\$_\"}",
+            "};"
+        ],
+        "prefix": "try",
+        "description": "try/catch with Try::Tiny"
+    },
+    "try with success": {
+        "body": [
+            "my \\$${3:success} = 1;",
+            "try {",
+            "\t$1",
+            "} catch {",
+            "\t${2:print \"An error occured - \\$_\"}",
+            "\t\\$${3:success} = 0;",
+            "};"
+        ],
+        "prefix": "rtry",
+        "description": "try/catch with success variable"
+    },
+    "print": {
+        "body": [
+            "print \"${1:\\$_}\n\""
+        ],
+        "prefix": "print",
+        "description": "print statement"
+    },
+    "dump": {
+        "body": [
+            "use Data::Dumper;",
+            "print Dumper(${1:\\$_})"
+        ],
+        "prefix": "dump",
+        "description": "print variable dump"
+    }
+}
