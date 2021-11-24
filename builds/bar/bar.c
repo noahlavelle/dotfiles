@@ -80,6 +80,9 @@ int main(int argc, char *argv[])
         module_values[i] = malloc(100);
     }
 
+    char pipe_path[100] = "";
+    sprintf(pipe_path, "/run/user/%i/status_bar", getuid());
+
     int fd;
     FILE *file;
     ssize_t n;
@@ -87,14 +90,14 @@ int main(int argc, char *argv[])
     if (argc == 1) {
         // Acts the server by monitoring named pipe to perform
         // the requested updates
-        ssize_t nr;
-        if ((fd = open("status_bar", O_RDONLY)) < 0) {
+        mkfifo(pipe_path, 0666);
+        if ((fd = open(pipe_path, O_RDONLY)) < 0) {
             printf("ERROR when opening the named pipe\n");
             exit(1);
         }
 
         while (1) {
-            while((nr = read(fd, buff, BUFFSIZE)) > 0) {
+            while(read(fd, buff, BUFFSIZE)) {
                 char *token;
                 token = strtok(buff, "\n");
                 while (token) {
@@ -113,14 +116,11 @@ int main(int argc, char *argv[])
     } else if (argc == 2) {
         // Used to keep module values updated and to update
         // them from anywhere (like from hooks)
-
-        mkfifo("status_bar", 0666);
-        if ((fd = open("status_bar", O_WRONLY)) < 0) {
+        mkfifo(pipe_path, 0666);
+        if ((fd = open(pipe_path, O_WRONLY)) < 0) {
             printf("ERROR when opening the named pipe");
             exit(1);
         }
-
-        file = fdopen(fd, "w");
 
         if (strcmp(argv[1], "all") == 0) {
             // Update all interval based modules in a loop

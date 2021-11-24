@@ -1,6 +1,6 @@
 #include "themes/gruvbox.h"
 
-#define SCRIPTS_PATH  "scripts"
+#define SCRIPTS_PATH  "~/builds/bar/scripts"
 #define MODULES_COUNT 6
 #define BUFFSIZE      9999
 
