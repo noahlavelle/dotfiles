@@ -1,0 +1,11 @@
+static char black[]          = "#282828";
+static char white[]          = "#ebdbb2";
+static char gray2[]          = "#3c3836";
+static char gray3[]          = "#504945";
+static char gray4[]          = "#665c54";
+static char blue[]           = "#83a598";
+static char green[]          = "#8ec07c";
+static char red[]            = "#fb4934";
+static char orange[]         = "#fe8019";
+static char yellow[]         = "#fabd2f";
+static char pink[]           = "#c678dd";

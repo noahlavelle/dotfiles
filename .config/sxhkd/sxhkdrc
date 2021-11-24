@@ -6,7 +6,7 @@ super + Escape
 
 # APPLICATION KEYBINDINGS
 
-super + space
+super + p
     dmenu_run -x 10 -y 8 -z 2540 -h 25
 
 super + Return
@@ -28,3 +28,8 @@ super + Print
 
 super + shift + Print
     import -window root ~/Pictures/$(date '+%Y%m%d-%H%M%S').png
+
+# MEDIA BINDINGS
+
+super + P
+    ~/scripts/playerctl-custom.sh play-pause

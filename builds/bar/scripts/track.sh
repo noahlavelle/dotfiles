@@ -1,7 +1,7 @@
 #!/bin/zsh
 local track
-track=$(playerctl metadata --format "{{artist}} - {{title}}") > /dev/null 2>&1
-if playerctl metadata > /dev/null 2>&1
+track=$(timeout 0.1 playerctl metadata --format "{{artist}} - {{title}}") > /dev/null 2>&1
+if timeout 0.1 playerctl metadata > /dev/null 2>&1
 then
     track=$track
 
