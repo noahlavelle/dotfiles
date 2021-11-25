@@ -80,9 +80,6 @@ int main(int argc, char *argv[])
         module_values[i] = malloc(100);
     }
 
-    char pipe_path[100] = "";
-    sprintf(pipe_path, "/run/user/%i/status_bar", getuid());
-
     int fd;
     FILE *file;
     ssize_t n;
@@ -90,8 +87,8 @@ int main(int argc, char *argv[])
     if (argc == 1) {
         // Acts the server by monitoring named pipe to perform
         // the requested updates
-        mkfifo(pipe_path, 0666);
-        if ((fd = open(pipe_path, O_RDONLY)) < 0) {
+        mkfifo(PIPE_PATH, 0666);
+        if ((fd = open(PIPE_PATH, O_RDONLY)) < 0) {
             printf("ERROR when opening the named pipe\n");
             exit(1);
         }
@@ -116,8 +113,8 @@ int main(int argc, char *argv[])
     } else if (argc == 2) {
         // Used to keep module values updated and to update
         // them from anywhere (like from hooks)
-        mkfifo(pipe_path, 0666);
-        if ((fd = open(pipe_path, O_WRONLY)) < 0) {
+        mkfifo(PIPE_PATH, 0666);
+        if ((fd = open(PIPE_PATH, O_WRONLY)) < 0) {
             printf("ERROR when opening the named pipe");
             exit(1);
         }
