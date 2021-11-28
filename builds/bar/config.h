@@ -3,7 +3,7 @@
 #define SCRIPTS_PATH  "~/builds/bar/scripts"
 #define MODULES_COUNT 6
 #define BUFFSIZE      9999
-#define PIPE_PATH     "/var/tmp/status_bar"
+#define PIPE_PATH     "/tmp/status_bar"
 
 static char *modules[][4] = {
 /*    Name           Colour   Get Script    Interval  */

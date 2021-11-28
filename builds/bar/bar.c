@@ -10,38 +10,13 @@
 
 #include "config.h"
 
-static void convert_daemon();
 static void draw_bar();
-static char * get_value();
+static char * get_module_value();
 static void update_module();
 
 char *module_values[MODULES_COUNT];
 
-// VALUE UPDATE FUNCTIONS
-
-char * get_value(char * script) {
-    char command_buffer[60];
-    char output_buffer[60];
-    char *output = malloc(60);
-    strcpy(output, "");
-
-    // Load the script output into a file
-    sprintf(command_buffer, "%s/scripts/%s.sh", SCRIPTS_PATH, script);
-    FILE *file = popen(command_buffer, "r");
-    if (file == NULL) {
-        return "ERROR";
-    }
-
-    // Read the output and add it to the "output" variable
-    while (fgets(output_buffer, sizeof(output_buffer), file) != NULL) {
-        strcat(output, output_buffer);
-    }
-    pclose(file);
-    return output;
-}
-
-// RENDER FUNCTIONS
-
+// Sets the bar value using xsetroot so it is displayed in DWM
 void draw_bar()
 {
     char bar[256];
@@ -59,6 +34,7 @@ void draw_bar()
     system(update_command);
 }
 
+// Updates the value in the module_values variable
 void update_module(int module_index) {
     char *command = malloc(100);
     sprintf(command, "%s/%s.sh", SCRIPTS_PATH, modules[module_index][2]);
@@ -71,28 +47,40 @@ void update_module(int module_index) {
     pclose(fp);
 
     strcpy(module_values[module_index], output);
+    free(command);
+}
+
+void termination_handler(int sig_num) {
+    for (int i = 0; i < MODULES_COUNT; ++i) {
+        free(module_values[i]);
+    }
+    exit(sig_num);
 }
 
 int main(int argc, char *argv[])
 {
+    signal(SIGINT, termination_handler);
+
+    int fd;
+    char buff[BUFFSIZE];
+
     // Assign default values to modules
     for (int i = 0; i < MODULES_COUNT; ++i) {
         module_values[i] = malloc(100);
     }
-
-    int fd;
-    FILE *file;
-    ssize_t n;
-    char buff[BUFFSIZE];
+    
     if (argc == 1) {
         // Acts the server by monitoring named pipe to perform
         // the requested updates
+
+        // Open named pipe 
         mkfifo(PIPE_PATH, 0666);
         if ((fd = open(PIPE_PATH, O_RDONLY)) < 0) {
             printf("ERROR when opening the named pipe\n");
             exit(1);
         }
 
+        // Update bar whenever named pipe is changed
         while (1) {
             while(read(fd, buff, BUFFSIZE)) {
                 char *token;
@@ -133,6 +121,11 @@ int main(int argc, char *argv[])
                 ++interval;
                 sleep(1);
             }
+        } else if (strcmp(argv[1], "monitor_volume") == 0) {
+            system("pactl subscribe\
+                    | grep --line-buffered 'sink'\
+                    | while read -r UNUSED_LINE; do status_bar volume; done &"
+            );
         } else {
             write(fd, argv[1], strlen(argv[1]));
             write(fd, "\n", 1);
