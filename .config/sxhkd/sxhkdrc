@@ -15,9 +15,6 @@ super + Return
 super + B
     brave
 
-super + S
-    alacritty --title "Spotify" -e spt
-
 # SCREENSHOT BINDINGS
 
 super + s
@@ -33,3 +30,15 @@ super + shift + Print
 
 super + P
     ~/scripts/playerctl-custom.sh play-pause
+
+super + M
+    pamixer -t
+
+super + S
+    playerctl next
+
+super + control + equal
+    pamixer -i 5
+
+super + control + minus
+    pamixer -d 5
