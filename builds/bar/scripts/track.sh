@@ -2,10 +2,9 @@
 
 sleep 0.2
 
-local track
-track=$(spotifycli --status) > /dev/null 2>&1
+track=$(timeout 0.5 playerctl -p spotifyd metadata --format "{{artist}} - {{title}}") > /dev/null 2>&1
 
-if [[ "$track" == "Spotify is off" ]]
+if [[ $track == "" ]]
 then
     track="No song playing"
 else
