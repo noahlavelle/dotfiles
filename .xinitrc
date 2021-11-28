@@ -6,8 +6,9 @@ feh --bg-scale ~/wallpaper/gruvbox_dots.png &
 picom &
 dunst &
 
-$HOME/builds/bar/status_bar &
-$HOME/builds/bar/status_bar all &
+status_bar &
+status_bar all &
+pactl subscribe | grep --line-buffered "sink" | while read -r UNUSED_LINE; do status_bar volume; done &
 
 exec dwm 2> ~/dwm.log
 
