@@ -135,4 +135,3 @@ int main(int argc, char *argv[])
         printf("\nToo many arguments supplied (maximum 1 expected)\n");
     }
 }
-
