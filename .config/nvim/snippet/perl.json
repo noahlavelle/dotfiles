@@ -1,0 +1,45 @@
+{
+    "new script": {
+        "body": [
+            "#!/usr/bin/env perl",
+            "",
+            "use strict;",
+            "use warnings;",
+            "",
+            "use Common qw(verbose \\$VERBOSE);",
+            "",
+            "${1:verbose 'Hello World'};",
+            "$2"
+        ],
+        "prefix": "#!",
+        "description": "new perl script"
+    },
+    "try with success": {
+        "body": [
+            "my \\$${3:success} = 1;",
+            "try {",
+            "\t$1",
+            "} catch {",
+            "\t${2:print \"An error occured - \\$_\"}",
+            "\t\\$${3:success} = 0;",
+            "};"
+        ],
+        "prefix": "success",
+        "description": "try/catch with success variable"
+    },
+    "print": {
+        "body": [
+            "print \"${1:\\$_}\n\""
+        ],
+        "prefix": "print",
+        "description": "print statement"
+    },
+    "dump": {
+        "body": [
+            "use Data::Dumper;",
+            "print Dumper(${1:\\$_});"
+        ],
+        "prefix": "dump",
+        "description": "print variable dump"
+    }
+}

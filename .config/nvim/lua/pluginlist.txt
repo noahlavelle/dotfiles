@@ -1,0 +1,28 @@
+# A list of plugins I plan to use
+base16
+telescope
+telescope-fzf
+web-devicons
+
+unimpaired
+surround
+
+lsp
+lspinstall
+lspconfig
+treesitter
+colorizer (or some other highlighter)
+
+cpm
+
+bufferline
+<A statusline (lualine/feline?)>
+gitsigns
+fugative
+matchup
+autopairs
+nvim-comment
+nvim-tree
+
+neoformat
+some snippet provider (luasnip?)
