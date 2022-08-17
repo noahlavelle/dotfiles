@@ -1,0 +1,64 @@
+# WM INDEPENDENT KEYBINDINGS
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+super + L
+    loginctl lock-session
+# APPLICATION KEYBINDINGS
+
+# ROFI
+super + p
+    rofi -show drun
+
+super + w
+    rofi -show window
+
+super + P
+    rofi -show run
+
+super + e
+    rofi -show filebrowser
+
+super + r
+    rofi -show ssh
+
+super + Return
+    alacritty
+
+super + v
+    CM_LAUNCHER=rofi clipmenu
+
+# WM
+super + control + Return
+    alacritty -e ssh dyn134
+
+super + B
+    brave
+
+
+# SCREENSHOT BINDINGS
+
+super + s
+    import -silent png:- | xclip -selection clipboard -t image/png
+
+super + S
+    import -silent -window root ~/screenshots/$(date '+%Y%m%d-%H%M%S').png
+
+# MEDIA BINDINGS
+
+super + P
+    playerctl play-pause
+
+super + M
+    pamixer -t
+
+super + S
+    playerctl next
+
+super + control + equal
+    pamixer -i 5
+
+super + control + minus
+    pamixer -d 5
