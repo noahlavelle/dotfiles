@@ -48,17 +48,22 @@ super + S
 
 # MEDIA BINDINGS
 
-super + P
+super + Home
     playerctl play-pause
+
+super + End
+    playerctl next
+
+# Prior = PgUp
+super + Prior
+    playerctl previous
 
 super + M
     pamixer -t
 
-super + S
-    playerctl next
-
-super + control + equal
+# Next = PgDown
+super + Next
     pamixer -i 5
 
-super + control + minus
+super + Right
     pamixer -d 5
