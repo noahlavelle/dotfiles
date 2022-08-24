@@ -4,7 +4,7 @@ setxkbmap gb
 clipmenud &
 sxhkd &
 feh --bg-fill ~/wallpaper/nord_mountains.jpg &
-picom &
+picom --backend glx &
 dunst &
 
 # Lock Screen
@@ -15,5 +15,5 @@ status_bar &
 status_bar all &
 pactl subscribe | grep --line-buffered "sink" | while read -r UNUSED_LINE; do status_bar volume; done &
 
-exec dwm 2> ~/builds/dwm/.dwm.log
+exec dbus-launch dwm 2> ~/builds/dwm/.dwm.log
 
