@@ -25,7 +25,8 @@ void draw_bar()
     // Loop through each bar module and add the coloured value to "bar"
     for (int i = 0; i < MODULES_COUNT; ++i) {
         char module[256];
-        sprintf(module, "^c%s^%s^d^ | ", modules[i][1], module_values[i]);
+        char* seperator = (i == MODULES_COUNT - 1 ? "  " : " | ");
+        sprintf(module, "^c%s^%s^d^%s", modules[i][1], module_values[i], seperator);
         strcat(bar, module);
     }
 
@@ -68,12 +69,12 @@ int main(int argc, char *argv[])
     for (int i = 0; i < MODULES_COUNT; ++i) {
         module_values[i] = malloc(100);
     }
-    
+
     if (argc == 1) {
         // Acts the server by monitoring named pipe to perform
         // the requested updates
 
-        // Open named pipe 
+        // Open named pipe
         mkfifo(PIPE_PATH, 0666);
         if ((fd = open(PIPE_PATH, O_RDONLY)) < 0) {
             printf("ERROR when opening the named pipe\n");

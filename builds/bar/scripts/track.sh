@@ -2,7 +2,7 @@
 
 sleep 0.2
 
-track=$(timeout 0.5 playerctl -p spotify metadata --format "{{artist}} - {{title}}") > /dev/null 2>&1
+track=$(timeout 0.5 playerctl -p spotify metadata --format "{{artist}} | {{album}} - {{title}}") > /dev/null 2>&1
 
 if [[ $track == "" ]]
 then

@@ -1,1 +1,0 @@
-#undef GIT_VERSION

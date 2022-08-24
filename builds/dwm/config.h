@@ -2,14 +2,15 @@
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const Gap default_gap        = {.isgap = 1, .realgap = 10, .gappx = 20 };
+static const Gap default_gap        = {.isgap = 1, .realgap = 10, .gappx = 3 };
+//static const Gap default_gap        = {.isgap = 0, .realgap = 0, .gappx = 0 };
 static const unsigned int snap      = 32;       /* snap pixel */
 
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int vertpad            = 8;       /* vertical padding of bar */
+static const int vertpad            = 0;       /* vertical padding of bar */
 static const int vertoffset         = 0;       /* vertical offset to fix no bottom padding */
-static const int sidepad            = 10;       /* horizontal padding of bar */
+static const int sidepad            = 4;       /* horizontal padding of bar */
 static const int user_bh            = 25;        /* 0 means auto */
 
 static const char *fonts[]          = { "NotoSansMono Nerd Font Mono:size=12" };
@@ -23,7 +24,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "" };
+static const char *tags[] = { "1", "2", "3", "4", "5" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -31,9 +32,10 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class        instance    title       tags mask     isfloating   monitor */
-	{ "firefox",    NULL,       NULL,       1 << 1,       0,           -1 },
-	{ "Brave",      NULL,       NULL,       1 << 1,       0,           -1 },
+//	{ "firefox",    NULL,       NULL,       1 << 1,       0,           -1 },
+//	{ "Brave",      NULL,       NULL,       1 << 1,       0,           -1 },
 //	{ "Alacritty",  NULL,       "Spotify",  1 << 4,       0,           -1 },
+    { "_", NULL, NULL, 1 << 1, 0, -1},
 };
 
 /* layout(s) */
